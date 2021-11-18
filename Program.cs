@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>();
 //Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<Service>();
 
 //Instancia do APP
 var app = builder.Build();
@@ -27,5 +28,5 @@ app.UseSwaggerUI(s => {
 });
 
 
-//Executando o APP
+//Executando a aplicação
 app.Run();

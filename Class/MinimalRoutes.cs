@@ -3,10 +3,13 @@ using MinimalApi.Data;
 
 namespace MinimalApi
 {
-    public static class MinimalApi
+    public static class MinimalRoutes
     {
         public static void MapMinimalRoutes(this IEndpointRouteBuilder app)
         {
+            //health check
+            app.MapGet("/health", (Service myService) => new { Healthy = myService.Healthy });
+
             //GET dos Todos
             app.MapGet("v1/todos", (AppDbContext context) =>
             {
