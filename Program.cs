@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 //Instancia do APP
 var app = builder.Build();
+
+//Criando as rotas da API
 app.MapMinimalRoutes();
 
 //Swagger
