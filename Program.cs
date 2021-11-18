@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 //Instancia do APP
 var app = builder.Build();
 
-//Criando as rotas da API
+//Criando as rotas da API em classe separada
 app.MapMinimalRoutes();
 
 //Swagger
@@ -22,7 +22,7 @@ app.UseSwagger();
 
 //Definindo padrão URL
 app.UseSwaggerUI(s => {
-    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha Minimal API");
+    s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     s.RoutePrefix = "swagger";
 });
 

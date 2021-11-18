@@ -15,7 +15,7 @@ namespace MinimalApi
             });
 
             //Salvando o Todo
-            app.MapPost("/v1/todos", (AppDbContext context, CreateTodoViewModel model) =>
+            app.MapPost("v1/todos", (AppDbContext context, CreateTodoViewModel model) =>
             {
                 var todo = model.MapTo();
 
@@ -33,11 +33,23 @@ namespace MinimalApi
             });
 
             //Buscando todo by ID GUID
-            app.MapGet("/todos/{id}", (Guid id, AppDbContext context) =>
+            app.MapGet("v1/todos/{id}", (Guid id, AppDbContext context) =>
+            {
+                var todo = context.Todos.Find(id);
+                return todo is not null ? Results.Ok(todo) : Results.NotFound();
+            });
+
+            //Setando todo como Feito
+            app.MapPut("v1/todos/{id}", (Guid id, AppDbContext context) =>
             {
                 var todo = context.Todos.Find(id);
 
-                return todo is not null ? Results.Ok(todo) : Results.NotFound();
+                if (todo is null) return Results.NotFound();
+
+                todo.Done = true;
+                context.SaveChanges();
+
+                return Results.Created($"/v1/todos/{todo.Id}", todo);
             });
         }
     }

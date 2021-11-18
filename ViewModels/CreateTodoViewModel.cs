@@ -15,7 +15,12 @@ namespace MinimalApi.ViewModels
                 .IsNotNull(Title, "Informe o título da tarefa")
                 .IsGreaterThan(Title, 5, "O título deve conter mais de 5 caracteres"));
 
-            return new Todo(Guid.NewGuid(), Title, false);
+            return new Todo()
+            {
+                Id = Guid.NewGuid(),
+                Title = Title,
+                Done = false
+            };
         }
     }
 }
