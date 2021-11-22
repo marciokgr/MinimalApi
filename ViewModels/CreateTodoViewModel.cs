@@ -6,7 +6,7 @@ namespace MinimalApi.ViewModels
 {
     public class CreateTodoViewModel : Notifiable<Notification>
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         public Todo MapTo()
         {

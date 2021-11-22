@@ -7,6 +7,9 @@ namespace MinimalApi.Data
     {
         public DbSet<Todo> Todos { get; set; }
 
+        public DbSet<Usuario> Usuarios { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("DataSource=app.db;Cache=Shared");
     }
