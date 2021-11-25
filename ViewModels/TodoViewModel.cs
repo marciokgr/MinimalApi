@@ -4,7 +4,7 @@ using MinimalApi.Models;
 
 namespace MinimalApi.ViewModels
 {
-    public class CreateTodoViewModel : Notifiable<Notification>
+    public class TodoViewModel : Notifiable<Notification>
     {
         public string? Title { get; set; }
 

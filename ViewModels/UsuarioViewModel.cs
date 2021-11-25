@@ -4,7 +4,7 @@ using MinimalApi.Models;
 
 namespace MinimalApi.ViewModels
 {
-    public class CreateUsuarioViewModel : Notifiable<Notification>
+    public class UsuarioViewModel : Notifiable<Notification>
     {
         public string ?Login { get; set; }
 

@@ -14,7 +14,7 @@ namespace MinimalApi
             app.MapGet("v1/health", [AllowAnonymous] (Service myService) => new { Healthy = myService.Healthy });
          
 
-            app.MapPost("v1/login", [AllowAnonymous] (AppDbContext context, CreateUsuarioViewModel model, HttpContext http, ITokenService tokenService) => 
+            app.MapPost("v1/login", [AllowAnonymous] (AppDbContext context, UsuarioViewModel model, HttpContext http, ITokenService tokenService) => 
             {
                 var usuarios = context.Usuarios;
                 if (usuarios.Count() == 0)
@@ -50,7 +50,7 @@ namespace MinimalApi
             });
 
             //Salvando o Todo
-            app.MapPost("v1/todos", [Authorize] (AppDbContext context, CreateTodoViewModel model) =>
+            app.MapPost("v1/todos", [Authorize] (AppDbContext context, TodoViewModel model) =>
             {
                 var todo = model.MapTo();
 
@@ -87,8 +87,8 @@ namespace MinimalApi
                 return Results.Created($"/v1/todos/{todo.Id}", todo);
             });
 
-            //
-            app.MapPost("v1/Usuario", [AllowAnonymous] (AppDbContext context, CreateUsuarioViewModel model) =>
+            //Criando Usuarios
+            app.MapPost("v1/Usuario", [Authorize]  (AppDbContext context, UsuarioViewModel model) =>
             {
                 var usuario = model.MapTo();
 
